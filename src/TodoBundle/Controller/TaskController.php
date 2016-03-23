@@ -23,7 +23,7 @@ class TaskController extends Controller
     public function createAction(Request $request){
 
         $em = $this ->getDoctrine()->getManager();
-        $task = new Tasks();
+        $task = new Tasks($this->getUser());
         $form = $this -> createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
@@ -56,8 +56,11 @@ class TaskController extends Controller
     public function listAction(){
         $tasks = $this->getDoctrine()
             ->getRepository('TodoBundle:Tasks')
-            ->findAll();
-           /* ->findByLibelle('task 1');*/
+            ->findByUser(
+                $this->getUser()
+            );
+           /* ->findAll();
+            ->findByLibelle('task 1');*/
 
       /*  foreach($tasks as$task){
             echo $task->getLabel();

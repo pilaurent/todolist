@@ -54,7 +54,7 @@ class Tasks
     protected $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="tasks")
+     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="task")
      */
     protected $tag;
 
@@ -62,6 +62,15 @@ class Tasks
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
      */
     protected $user;
+
+    /**
+     * Tasks constructor.
+     * @param $user
+     */
+    public function __construct($user)
+    {
+        $this->user = $user;
+    }
 
 
     /**
@@ -74,6 +83,8 @@ class Tasks
         }
         $this->datemod = new \DateTime();
     }
+
+
 
     /**
      * @return mixed
