@@ -9,14 +9,16 @@
 namespace TodoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user")
+ * @ORM\Table(name="`user`")
  */
 
 
-class User
+class User extends BaseUser
 {
     /**
      * @ORM\Column(type="integer")
@@ -25,17 +27,23 @@ class User
      */
     protected  $id;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     protected  $name;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected  $firstname;
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    protected  $email;
+
     /**
      * @ORM\OneToMany(targetEntity="Tasks" , mappedBy="user")
      */

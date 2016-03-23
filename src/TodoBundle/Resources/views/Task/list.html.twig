@@ -1,0 +1,14 @@
+{%  extends 'base.html.twig' %}
+{%  block body %}
+
+    <ul>
+        {% trans %}general.nonempty_list{% endtrans %}
+        {%  for task in tasks %}
+            <li>
+                {{task.libelle}}
+            </li>
+        {% else %}
+            {% trans %}general.empty_list{% endtrans %}
+        {%  endfor %}
+    </ul>
+{%  endblock %}

@@ -1,2 +1,10 @@
 homepage.hello_world: Coucou tout le monde!
 homepage.welcome_message: Bienvenue sur mon application
+taskcontroller.value_not_valid: "La valeur n'est pas valide"
+taskcontroller.added_success: 'Tâche ajoutée avec succès!'
+tasktype.libelle: 'libelle'
+html.response.200: 200
+html.response.302: 302
+html.response.500: 500
+general.empty_list: '  Liste vide '
+general.nonempty_list: ' Liste  '

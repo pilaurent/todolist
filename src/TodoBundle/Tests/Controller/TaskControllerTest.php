@@ -22,7 +22,7 @@ class TaskControllerTest extends WebTestCase
     public function testNewTaskForm(){
         $this->getCLient();
         $this->client->request('GET', '/task/create');
-        $this->assertEquals(200,            $this->client->getResponse()->getStatusCode());
+        $this->assertEquals('html.response.200',            $this->client->getResponse()->getStatusCode());
         if (!empty($this)) {
             $this->assertContains('Save',   $this->client->getResponse()->getContent());
         }
@@ -41,11 +41,11 @@ class TaskControllerTest extends WebTestCase
        );
         $this->client->submit($form,$data);
 
-        $this->assertEquals(302,            $this->client->getResponse()->getStatusCode());
+        $this->assertEquals('html.response.302',            $this->client->getResponse()->getStatusCode());
         $this->client->followRedirect();
 
-        $this->assertEquals(200,            $this->client->getResponse()->getStatusCode());
-        $this->assertContains('Task added with success', $this->client->getResponse()->getContent());
+        $this->assertEquals('html.response.200',            $this->client->getResponse()->getStatusCode());
+        $this->assertContains('taskcontroller.added_success', $this->client->getResponse()->getContent());
 
     }
 
@@ -61,8 +61,8 @@ class TaskControllerTest extends WebTestCase
         );
         $this->client->submit($form,$data);
 
-        $this->assertEquals(200,            $this->client->getResponse()->getStatusCode());
-        $this->assertContains('This value is not valid', $this->client->getResponse()->getContent());
+        $this->assertEquals('html.response.200',            $this->client->getResponse()->getStatusCode());
+        $this->assertContains('taskcontroller.value_not_valid', $this->client->getResponse()->getContent());
 
     }
 
@@ -73,6 +73,6 @@ class TaskControllerTest extends WebTestCase
         $form = $crawler->filter('button[type=submit]')->form();
 
         $crawler = $this->client->submit($form);
-        $this->assertEquals(500,            $this->client->getResponse()->getStatusCode());
+        $this->assertEquals('html.response.500',            $this->client->getResponse()->getStatusCode());
     }
 }

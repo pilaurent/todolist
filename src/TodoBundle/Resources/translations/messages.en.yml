@@ -1,2 +1,13 @@
 homepage.hello_world: Hello World !
 homepage.welcome_message: Welcome on my todolist
+
+taskcontroller.value_not_valid: 'Value not valid'
+taskcontroller.added_success: 'Task added with success'
+tasktype.libelle: 'libelle'
+
+html.response.200: 200
+html.response.302: 302
+html.response.500: 500
+
+general.empty_list: ' Empty List '
+general.nonempty_list: ' List '

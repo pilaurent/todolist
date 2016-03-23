@@ -49,4 +49,20 @@ class TaskController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * @Route("/task/list")
+     */
+    public function listAction(){
+        $tasks = $this->getDoctrine()
+            ->getRepository('TodoBundle:Tasks')
+            ->findByLibelle('task 1');
+
+      /*  foreach($tasks as$task){
+            echo $task->getLabel();
+        }*/
+
+       /* VarDumper::dump($tasks);die;*/
+        return $this->render('TodoBundle:Task:list.html.twig', array( 'tasks' => $tasks));
+    }
 }
