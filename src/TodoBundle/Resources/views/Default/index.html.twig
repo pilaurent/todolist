@@ -2,4 +2,43 @@
 {%  block body %}
     {%  trans %}homepage.hello_world    {%  endtrans %}
     {%  trans %}homepage.welcome_message{%  endtrans %}
+
+    <h2> Tâches </h2>
+
+    <ul>
+        <li>
+            <a href="{{  path('create_task') }}"> Create new task </a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="{{  path('list_task') }}"> List tasks </a>
+        </li>
+    </ul>
+
+    <h2> Catégories </h2>
+
+    <ul>
+        <li>
+            <a href="{{  path('create_category') }}"> Create new category </a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="{{  path('list_category') }}"> List category </a>
+        </li>
+    </ul>
+
+    <h2> Tags </h2>
+
+    <ul>
+        <li>
+            <a href="{{  path('create_tags') }}"> Create new tags </a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="{{  path('list_tags') }}"> List tags </a>
+        </li>
+    </ul>
 {%  endblock %}

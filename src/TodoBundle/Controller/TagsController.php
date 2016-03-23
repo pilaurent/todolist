@@ -12,58 +12,57 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\VarDumper\VarDumper;
-use TodoBundle\Entity\Tasks;
-use TodoBundle\Form\Type\TaskType;
+use TodoBundle\Entity\Tags;
+use TodoBundle\Form\Type\TagsType;
 
-class TaskController extends Controller
+class TagsController extends Controller
 {
     /**
-     * @Route("/task/create", name ="create_task")
+     * @Route("/tags/create", name="create_tags")
      */
     public function createAction(Request $request){
 
         $em = $this ->getDoctrine()->getManager();
-        $task = new Tasks();
-        $form = $this -> createForm(TaskType::class, $task);
+        $tags = new Tags();
+        $form = $this -> createForm(TagsType::class, $tags);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em->persist($task);
+            $em->persist($tags);
             $em->flush();
 
             $this -> addFlash(
                 'notice',
-                'Task added with success'
+                'Tag added with success'
             );
 
             return $this ->redirect('/');
         } else {
             $this -> addFlash(
                 'warning',
-                'Error while adding task '
+                'Error while adding tags'
             );
         }
 
-        return $this -> render('TodoBundle:Task:create.html.twig', array(
+        return $this -> render('TodoBundle:Tags:create.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * @Route("/task/list", name="list_task")
+     * @Route("/tags/list", name="list_tags")
      */
     public function listAction(){
-        $tasks = $this->getDoctrine()
-            ->getRepository('TodoBundle:Tasks')
+        $tags = $this->getDoctrine()
+            ->getRepository('TodoBundle:Tags')
             ->findAll();
-           /* ->findByLibelle('task 1');*/
 
       /*  foreach($tasks as$task){
             echo $task->getLabel();
         }*/
 
        /* VarDumper::dump($tasks);die;*/
-        return $this->render('TodoBundle:Task:list.html.twig', array( 'tasks' => $tasks));
+        return $this->render('TodoBundle:Tags:list.html.twig', array( 'tags' => $tags));
     }
 }

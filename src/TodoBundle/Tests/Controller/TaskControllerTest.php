@@ -22,7 +22,7 @@ class TaskControllerTest extends WebTestCase
     public function testNewTaskForm(){
         $this->getCLient();
         $this->client->request('GET', '/task/create');
-        $this->assertEquals('html.response.200',            $this->client->getResponse()->getStatusCode());
+        $this->assertContains('html.response.200',            $this->client->getResponse()->getStatusCode());
         if (!empty($this)) {
             $this->assertContains('Save',   $this->client->getResponse()->getContent());
         }
@@ -75,4 +75,6 @@ class TaskControllerTest extends WebTestCase
         $crawler = $this->client->submit($form);
         $this->assertEquals('html.response.500',            $this->client->getResponse()->getStatusCode());
     }
+
+
 }

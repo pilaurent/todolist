@@ -12,58 +12,57 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\VarDumper\VarDumper;
-use TodoBundle\Entity\Tasks;
-use TodoBundle\Form\Type\TaskType;
+use TodoBundle\Entity\Category;
+use TodoBundle\Form\Type\CategoryType;
 
-class TaskController extends Controller
+class CategoryController extends Controller
 {
     /**
-     * @Route("/task/create", name ="create_task")
+     * @Route("/category/create", name ="create_category")
      */
     public function createAction(Request $request){
 
         $em = $this ->getDoctrine()->getManager();
-        $task = new Tasks();
-        $form = $this -> createForm(TaskType::class, $task);
+        $category = new Category();
+        $form = $this -> createForm(CategoryType::class, $category);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em->persist($task);
+            $em->persist($category);
             $em->flush();
 
             $this -> addFlash(
                 'notice',
-                'Task added with success'
+                'Category added with success'
             );
 
             return $this ->redirect('/');
         } else {
             $this -> addFlash(
                 'warning',
-                'Error while adding task '
+                'Error while adding category'
             );
         }
 
-        return $this -> render('TodoBundle:Task:create.html.twig', array(
+        return $this -> render('TodoBundle:Category:create.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * @Route("/task/list", name="list_task")
+     * @Route("/category/list", name ="list_category")
      */
     public function listAction(){
-        $tasks = $this->getDoctrine()
-            ->getRepository('TodoBundle:Tasks')
+        $category = $this->getDoctrine()
+            ->getRepository('TodoBundle:Category')
             ->findAll();
-           /* ->findByLibelle('task 1');*/
 
       /*  foreach($tasks as$task){
             echo $task->getLabel();
         }*/
 
        /* VarDumper::dump($tasks);die;*/
-        return $this->render('TodoBundle:Task:list.html.twig', array( 'tasks' => $tasks));
+        return $this->render('TodoBundle:Category:list.html.twig', array( 'category' => $category));
     }
 }

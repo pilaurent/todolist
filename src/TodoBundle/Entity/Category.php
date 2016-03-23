@@ -115,6 +115,10 @@ class Category
         $this->tasks = $tasks;
     }
 
+    public function __toString()
+    {
+        return 'Cat : '.$this->id.' '.$this->name;
+    }
 
 
 }

@@ -11,3 +11,6 @@ html.response.500: 500
 
 general.empty_list: ' Empty List '
 general.nonempty_list: ' List '
+
+categorytype.nomcategorie: 'category'
+tasktype.category: 'category'

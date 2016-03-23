@@ -41,6 +41,7 @@ class Tags
         return $this->id;
     }
 
+
     /**
      * @param mixed $id
      */
@@ -82,7 +83,10 @@ class Tags
     }
 
 
-
+    public function __toString()
+    {
+        return 'Cat : '.$this->title;
+    }
 
 
 }

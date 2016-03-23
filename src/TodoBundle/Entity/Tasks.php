@@ -3,9 +3,12 @@
 namespace TodoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="tasks")
+ * @ORM\HasLifecycleCallbacks()
  */
 
 class Tasks
@@ -59,6 +62,18 @@ class Tasks
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
      */
     protected $user;
+
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function timestamps(){
+        if (is_null($this->datecre)){
+            $this->datecre = new \DateTime();
+        }
+        $this->datemod = new \DateTime();
+    }
 
     /**
      * @return mixed
@@ -236,6 +251,12 @@ class Tasks
     {
         $this->category = $category;
     }
+
+    public function __toString()
+    {
+        return 'Cat : '.$this->id.' '.$this->libelle;
+    }
+
 
 //    protected $tags;
 

@@ -1,0 +1,15 @@
+{%  extends 'base.html.twig' %}
+{%  block body %}
+
+    <ul>
+        {% trans %}general.nonempty_list{% endtrans %}
+        {%  for categor in category %}
+            <li>
+                {{categor.name}}/{{categor.color}}
+            </li>
+
+        {% else %}
+            {% trans %}general.empty_list{% endtrans %}
+        {%  endfor %}
+    </ul>
+{%  endblock %}

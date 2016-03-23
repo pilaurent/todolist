@@ -8,3 +8,6 @@ html.response.302: 302
 html.response.500: 500
 general.empty_list: '  Liste vide '
 general.nonempty_list: ' Liste  '
+
+categorytype.nomcategorie: 'Categorie'
+tasktype.category: 'categorie'
